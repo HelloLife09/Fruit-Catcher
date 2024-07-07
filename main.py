@@ -111,7 +111,7 @@ class Grape(Fruit):
         self.rect.y += self.fruit_vel
 
 class Stone(Hazard):
-    stone_image = pygame.transform.scale(pygame.image.load('assets\\Objects\\Rock.png').convert_alpha(), (30, 30))
+    stone_image = pygame.transform.scale(pygame.image.load('assets\\Hazards\\Rock.png').convert_alpha(), (30, 30))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - 20))
@@ -122,7 +122,7 @@ class Stone(Hazard):
         self.rect.y += self.hazard_vel
 
 class Bomb(Hazard):
-    bomb_image = pygame.transform.scale(pygame.image.load('assets\\Objects\\Bomb.png').convert_alpha(), (30, 30))
+    bomb_image = pygame.transform.scale(pygame.image.load('assets\\Hazards\\Bomb.png').convert_alpha(), (30, 30))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - 20))
