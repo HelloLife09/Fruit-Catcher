@@ -47,7 +47,6 @@ class Fruit:
 
     def __init__(self, x):
         self.x = x
-        # y = -30
         
 class Hazard:
     width = 20
@@ -57,54 +56,66 @@ class Hazard:
         self.x = x
 
 class Apple(Fruit):
+    apple_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Apple.png").convert_alpha(), (40, 40))
+
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - 20))
-        self.rect = pygame.Rect(self.x, -30, 20, 20)
+        self.rect = pygame.Rect(self.x, -30, 40, 40)
         self.fruit_vel = 4.1
 
     def update(self):
         self.rect.y += self.fruit_vel
 
 class Orange(Fruit):
+    orange_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Orange.png").convert_alpha(), (40, 40))
+
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - 20))
-        self.rect = pygame.Rect(self.x, -30, 20, 20)
+        self.rect = pygame.Rect(self.x, -30, 40, 40)
         self.fruit_vel = 3.8  
 
     def update(self):
         self.rect.y += self.fruit_vel
 
 class Banana(Fruit):
+    banana_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Banana.png").convert_alpha(), (50, 50))
+
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - 20))
-        self.rect = pygame.Rect(self.x, -30, 20, 20)
+        self.rect = pygame.Rect(self.x, -30, 40, 50)
         self.fruit_vel = 4.5  
 
     def update(self):
         self.rect.y += self.fruit_vel
 
 class Pear(Fruit):
+    pear_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Pear.png").convert_alpha(), (40, 40))
+
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - 20))
-        self.rect = pygame.Rect(self.x, -30, 20, 20)
+        self.rect = pygame.Rect(self.x, -30, 40, 40)
         self.fruit_vel = 4.2  
 
     def update(self):
         self.rect.y += self.fruit_vel
 
 class Blueberry(Fruit):
+    blueberry_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Blueberry.png").convert_alpha(), (30, 30))
+
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - 20))
-        self.rect = pygame.Rect(self.x, -30, 15, 15)  
+        self.rect = pygame.Rect(self.x, -30, 30, 30)  
         self.fruit_vel = 4.8  
 
     def update(self):
         self.rect.y += self.fruit_vel
 
 class Grape(Fruit):
+    grape_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Grape.png").convert_alpha(), (40, 50))
+
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - 20))
-        self.rect = pygame.Rect(self.x, -30, 15, 15)  
+        self.rect = pygame.Rect(self.x, -30, 40, 50)  
         self.fruit_vel = 4.6  
 
     def update(self):
@@ -143,17 +154,17 @@ def draw(window, basket, fruits, hazards):
 
     for fruit in fruits:
         if isinstance(fruit, Apple):
-            pygame.draw.rect(window, (255, 0, 0), fruit.rect, border_radius=10)  
+            window.blit(Apple.apple_image, fruit.rect)  
         elif isinstance(fruit, Orange):
-            pygame.draw.rect(window, (255, 165, 0), fruit.rect, border_radius=10)  
+            window.blit(Orange.orange_image, fruit.rect) 
         elif isinstance(fruit, Banana):
-            pygame.draw.rect(window, (255, 255, 0), fruit.rect, border_radius=10)  
+            window.blit(Banana.banana_image, fruit.rect)
         elif isinstance(fruit, Pear):
-            pygame.draw.rect(window, (140, 255, 80), fruit.rect, border_radius=10)  
+            window.blit(Pear.pear_image, fruit.rect) 
         elif isinstance(fruit, Blueberry):
-            pygame.draw.rect(window, (0, 0, 255), fruit.rect, border_radius=10)  
+            window.blit(Blueberry.blueberry_image, fruit.rect)
         elif isinstance(fruit, Grape):
-            pygame.draw.rect(window, (100, 0, 150), fruit.rect, border_radius=10) 
+            window.blit(Grape.grape_image, fruit.rect)
 
     for hazard in hazards:
         if isinstance(hazard, Stone):
@@ -239,8 +250,6 @@ def main():
                     score -= 1
                 elif isinstance(hazard, Bomb):
                     score -= 3
-                else:
-                    print("Error: Unknown hazard type")
                 break
 
         basket.update()
