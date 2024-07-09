@@ -237,9 +237,9 @@ def main():
         if hazard_count > hazard_add_incr:
             for _ in range(random.randint(0, 1)):
                 if random.random() <= 0.85:
-                    hazard == Stone()
+                    hazard = Stone()
                 else:
-                    hazard == Bomb()
+                    hazard = Bomb()
                 hazards.append(hazard)
             hazard_add_incr = max(600, hazard_add_incr - 5)
             hazard_count = 0
