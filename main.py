@@ -85,7 +85,6 @@ class Orange(Fruit):
     def update(self):
         self.rect.y += self.fruit_vel
 
-
 class Banana(Fruit):
     banana_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Banana.png").convert_alpha(), (Fruit.width + 10, Fruit.height + 10))
 
