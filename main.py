@@ -253,6 +253,7 @@ def main():
                     score -= 1
                 elif isinstance(hazard, Bomb):
                     score -= 3
+                    life -= 1
                 break
 
         basket.update()
