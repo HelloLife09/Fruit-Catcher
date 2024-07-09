@@ -70,7 +70,7 @@ class Apple(Fruit):
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width))
-        self.rect = pygame.Rect(self.x, -30, Fruit.width - 10, Fruit.height - 10)  
+        self.rect = pygame.Rect(self.x, -30, Fruit.width, Fruit.height)  
         self.fruit_vel = 4.1
 
     def update(self):
@@ -81,7 +81,7 @@ class Orange(Fruit):
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width))
-        self.rect = pygame.Rect(self.x, -30, Fruit.width - 10, Fruit.height - 10)  
+        self.rect = pygame.Rect(self.x, -30, Fruit.width, Fruit.height)  
         self.fruit_vel = 3.8 
 
     def update(self):
@@ -103,7 +103,7 @@ class Pear(Fruit):
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width))
-        self.rect = pygame.Rect(self.x, -30, Fruit.width - 10, Fruit.height - 10)  
+        self.rect = pygame.Rect(self.x, -30, Fruit.width, Fruit.height)  
         self.fruit_vel = 4.2 
 
     def update(self):
@@ -147,6 +147,7 @@ class Bomb(Hazard):
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Hazard.width))
+        self.rect = pygame.Rect(self.x, -30, Hazard.width, Hazard.height)
         self.hazard_vel = (random.randint(64, 95) / 10)
 
     def update(self):
