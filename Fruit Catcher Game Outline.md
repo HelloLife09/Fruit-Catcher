@@ -11,7 +11,8 @@
 - Use the arrow keys to move the basket left and right.
 - Fruits and non-fruit objects fall from the top of the screen.
 - Earn points for each fruit caught.
-- Lose points for each non-fruit object caught or fruit missed.
+- Lose points or hearts for each non-fruit object caught.
+- Gain heart for each Heart caught.
 - Game ends when a certain number of non-fruit objects are caught or a set number of fruits are missed.
 
 ## **2. Key Components:**
@@ -22,8 +23,9 @@
 
 ### **Falling Objects:**
 
-- Fruit sprites 
-- Non-fruit objects 
+- Fruit sprites
+- Heart sprites 
+- Non-fruit sprites
 
 ### **Environment:**
 
@@ -45,7 +47,7 @@
 
 ### **Advanced Features (Optional):**
 
-- **Sound Effects and Music:** Add sound effects for catching fruits and non-fruits, and background music for a more engaging experience.
+- **Sound Effects and Music:** Add sound effects for catching fruits, hearts, and non-fruits, and background music for a more engaging experience.
 - **Animations:** Simple animations for falling objects and basket movement.
 
 ## **4. Development Steps:**
@@ -61,13 +63,13 @@
 
 3. **Generate Falling Objects:**
 
-   - Randomly generate fruits and non-fruit objects.
+   - Randomly generate fruits, hearts, and non-fruit objects.
    - Implement their falling motion.
 
 4. **Collision Detection:**
 
    - Detect when the basket catches an object.
-   - Update the score based on the type of object caught.
+   - Update the score or hearts based on the type of object caught.
 
 5. **Implement Game Logic:**
 
