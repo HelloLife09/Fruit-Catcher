@@ -47,7 +47,7 @@ class Fruit:
 
     def __init__(self, x):
         self.x = x
-        
+
 class Hazard:
     width = 40
     height = 40 
@@ -58,11 +58,11 @@ class Hazard:
 class Heart:
     width = 40
     height = 40 
-    heart_image = pygame.transform.scale(pygame.image.load("assets\\Heart.png").convert_alpha(). (width, height))
+    heart_image = pygame.transform.scale(pygame.image.load("assets\\Heart.png").convert_alpha(), (width, height))
 
     def __init__(self):
         self.x = random.randint(0, WIDTH - 20)
-        self.rect = pygame.Rect(self.x. -30, width, height)
+        self.rect = pygame.Rect(self.x, -30, width, height)
         self.heart_vel = (random.randint(36, 74) / 10)
 
 class Apple(Fruit):
@@ -196,7 +196,7 @@ def main():
     hazards = []
     hazard_count = 0
     hazard_add_incr = 5000
-    
+
     basket = Basket(WIDTH/2, HEIGHT-180, 100, 60)
 
     life = 0
