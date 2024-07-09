@@ -189,6 +189,7 @@ def main():
     
     basket = Basket(WIDTH/2, HEIGHT-180, 100, 60)
 
+    life = 0
     score = 0
 
     run = True
@@ -225,8 +226,10 @@ def main():
 
         if hazard_count > hazard_add_incr:
             for _ in range(random.randint(0, 1)):
-                hazard_class = random.choice(hazard_classes)
-                hazard = hazard_class()
+                if random.random() <= 0.85:
+                    hazard == Stone()
+                else:
+                    hazard == Bomb()
                 hazards.append(hazard)
             hazard_add_incr = max(600, hazard_add_incr - 5)
             hazard_count = 0
