@@ -198,7 +198,7 @@ def main():
 
     basket = Basket(WIDTH/2, HEIGHT-180, 100, 60)
 
-    life = 0
+    health = 0
     score = 0
 
     run = True
@@ -262,7 +262,7 @@ def main():
                     score -= 1
                 elif isinstance(hazard, Bomb):
                     score -= 3
-                    life -= 1
+                    health -= 1
                 break
 
         basket.update()
