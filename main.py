@@ -56,14 +56,17 @@ class Hazard:
         self.x = x
 
 class Heart:
-    width = 40
-    height = 40
+    width = 60
+    height = 60
     heart_image = pygame.transform.scale(pygame.image.load("assets\\Heart.png").convert_alpha(), (width, height))
 
     def __init__(self):
         self.x = random.randint(0, WIDTH - 20)
         self.rect = pygame.Rect(self.x, -30, Heart.width, Heart.height)
         self.heart_vel = (random.randint(36, 74) / 10)
+
+    def update(self):
+        self.rect.y += self.heart_vel
 
 class Apple(Fruit):
     apple_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Apple.png").convert_alpha(), (Fruit.width, Fruit.height))
@@ -153,7 +156,7 @@ class Bomb(Hazard):
     def update(self):
         self.rect.y += self.hazard_vel
 
-def draw(window, basket, fruits, hazards):
+def draw(window, basket, fruits, hazards, heart, add_heart):
     bar = pygame.Rect(0, 480, WIDTH, 10)
     window.blit(BACKGROUND, (0, 0))
 
@@ -181,6 +184,10 @@ def draw(window, basket, fruits, hazards):
         elif isinstance(hazard, Bomb):
             window.blit(Bomb.bomb_image, hazard.rect)
 
+    if add_heart == True and heart != None:
+        window.blit(Heart.heart_image, heart.rect)
+        add_heart = False
+
     pygame.display.update()
 
 def main():
@@ -196,9 +203,14 @@ def main():
     hazard_count = 0
     hazard_add_incr = 5000
 
+    health_count = 0
+    heart_list = []
+    add_heart = True
+    health_add_incr = 10000
+
     basket = Basket(WIDTH/2, HEIGHT-180, 100, 60)
 
-    health = 0
+    health = 2
     score = 0
 
     run = True
@@ -212,6 +224,9 @@ def main():
                     run = False
                     break
 
+        if health <= 0:
+            run = False
+
         keys = pygame.key.get_pressed()
 
         if (keys[pygame.K_LEFT] or keys[pygame.K_a]) and not (keys[pygame.K_RIGHT] or keys[pygame.K_d]):
@@ -224,6 +239,7 @@ def main():
         time_elapsed = clock.tick(FPS)
         fruit_count += time_elapsed
         hazard_count += time_elapsed
+        health_count += time_elapsed
 
         if fruit_count > fruit_add_incr:
             for _ in range(random.randint(1, 3)):
@@ -232,10 +248,17 @@ def main():
                 fruits.append(fruit)
             fruit_add_incr = max(200, fruit_add_incr - 10)
             fruit_count = 0
+        
+        if health_count > health_add_incr and health < 3:
+            heart = Heart()
+            heart_list.append(heart)  # Create a list to hold the heart
+            add_heart = True
+            health_count = 0
+
 
         if hazard_count > hazard_add_incr:
             for _ in range(random.randint(0, 1)):
-                if random.random() <= 0.85:
+                if random.random() <= 0.65:
                     hazard = Stone()
                 else:
                     hazard = Bomb()
@@ -252,6 +275,15 @@ def main():
                 score += 1
                 break
 
+        for heart in heart_list:
+            heart.update()
+            if heart.rect.y > HEIGHT:
+                heart_list.remove(heart)
+            elif heart.rect.bottom >= basket.rect.top and heart.rect.colliderect(basket.rect):
+                heart_list.remove(heart)
+                health += 1
+                break
+
         for hazard in hazards[:]:
             hazard.update()
             if hazard.rect.y > HEIGHT:
@@ -266,7 +298,7 @@ def main():
                 break
 
         basket.update()
-        draw(window, basket, fruits, hazards)
+        draw(window, basket, fruits, hazards, heart_list[0] if heart_list else None, add_heart)
 
     pygame.quit()
 
