@@ -9,7 +9,7 @@ pygame.init()
 pygame.display.set_caption("Fruit Catcher")
 
 WIDTH, HEIGHT = 450, 600
-BACKGROUND = pygame.transform.scale(pygame.image.load('assets\\Background.png'), (WIDTH, HEIGHT))
+BACKGROUND = pygame.transform.scale(pygame.image.load('Images\\Background.png'), (WIDTH, HEIGHT))
 FPS = 60
 
 BASKET_VEL = 5
@@ -58,7 +58,7 @@ class Hazard:
 class Heart:
     width = 60
     height = 60
-    heart_image = pygame.transform.scale(pygame.image.load("assets\\Heart.png").convert_alpha(), (width, height))
+    heart_image = pygame.transform.scale(pygame.image.load("Images\\Heart.png").convert_alpha(), (width, height))
 
     def __init__(self):
         self.x = random.randint(0, WIDTH - 20)
@@ -69,7 +69,7 @@ class Heart:
         self.rect.y += self.heart_vel
 
 class Apple(Fruit):
-    apple_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Apple.png").convert_alpha(), (Fruit.width, Fruit.height))
+    apple_image = pygame.transform.scale(pygame.image.load("Images\\Fruits\\Apple.png").convert_alpha(), (Fruit.width, Fruit.height))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width))
@@ -80,7 +80,7 @@ class Apple(Fruit):
         self.rect.y += self.fruit_vel
 
 class Orange(Fruit):
-    orange_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Orange.png").convert_alpha(), (Fruit.width, Fruit.height))
+    orange_image = pygame.transform.scale(pygame.image.load("Images\\Fruits\\Orange.png").convert_alpha(), (Fruit.width, Fruit.height))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width))
@@ -91,7 +91,7 @@ class Orange(Fruit):
         self.rect.y += self.fruit_vel
 
 class Banana(Fruit):
-    banana_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Banana.png").convert_alpha(), (Fruit.width + 10, Fruit.height + 10))
+    banana_image = pygame.transform.scale(pygame.image.load("Images\\Fruits\\Banana.png").convert_alpha(), (Fruit.width + 10, Fruit.height + 10))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width - 10))
@@ -102,7 +102,7 @@ class Banana(Fruit):
         self.rect.y += self.fruit_vel
         
 class Pear(Fruit):
-    pear_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Pear.png").convert_alpha(), (Fruit.width, Fruit.height))
+    pear_image = pygame.transform.scale(pygame.image.load("Images\\Fruits\\Pear.png").convert_alpha(), (Fruit.width, Fruit.height))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width))
@@ -113,7 +113,7 @@ class Pear(Fruit):
         self.rect.y += self.fruit_vel
 
 class Blueberry(Fruit):
-    blueberry_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Blueberry.png").convert_alpha(), (Fruit.width - 10, Fruit.height - 10))
+    blueberry_image = pygame.transform.scale(pygame.image.load("Images\\Fruits\\Blueberry.png").convert_alpha(), (Fruit.width - 10, Fruit.height - 10))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width + 10))
@@ -124,7 +124,7 @@ class Blueberry(Fruit):
         self.rect.y += self.fruit_vel
 
 class Grape(Fruit):
-    grape_image = pygame.transform.scale(pygame.image.load("assets\\Fruits\\Grape.png").convert_alpha(), (Fruit.width, Fruit.height + 10))
+    grape_image = pygame.transform.scale(pygame.image.load("Images\\Fruits\\Grape.png").convert_alpha(), (Fruit.width, Fruit.height + 10))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width))
@@ -135,7 +135,7 @@ class Grape(Fruit):
         self.rect.y += self.fruit_vel
 
 class Stone(Hazard):
-    stone_image = pygame.transform.scale(pygame.image.load('assets\\Hazards\\Rock.png').convert_alpha(), (Hazard.width - 5, Hazard.height - 5))
+    stone_image = pygame.transform.scale(pygame.image.load('Images\\Hazards\\Rock.png').convert_alpha(), (Hazard.width - 5, Hazard.height - 5))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Hazard.width + 5))
@@ -146,7 +146,7 @@ class Stone(Hazard):
         self.rect.y += self.hazard_vel
 
 class Bomb(Hazard):
-    bomb_image = pygame.transform.scale(pygame.image.load('assets\\Hazards\\Bomb.png').convert_alpha(), (Hazard.width, Hazard.height))
+    bomb_image = pygame.transform.scale(pygame.image.load('Images\\Hazards\\Bomb.png').convert_alpha(), (Hazard.width, Hazard.height))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Hazard.width))
@@ -251,7 +251,7 @@ def main():
         
         if health_count > health_add_incr and health < 3:
             heart = Heart()
-            heart_list.append(heart)  # Create a list to hold the heart
+            heart_list.append(heart)
             add_heart = True
             health_count = 0
 
