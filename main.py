@@ -210,7 +210,7 @@ def main():
 
     basket = Basket(WIDTH/2, HEIGHT-180, 100, 60)
 
-    health = 2
+    health = 3
     score = 0
 
     run = True
