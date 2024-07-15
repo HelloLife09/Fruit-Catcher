@@ -17,6 +17,8 @@ BASKET_VEL = 5
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 class Basket(): 
+    basket_image = pygame.transform.scale(pygame.image.load('Images\\Basket.png').convert_alpha(), (80, 60))
+
     def __init__(self, x, y, width, height):
         self.rect = pygame.Rect(x, y, width, height)
         self.x = x
@@ -160,9 +162,9 @@ def draw(window, basket, fruits, hazards, heart, add_heart):
     bar = pygame.Rect(0, 480, WIDTH, 10)
     window.blit(BACKGROUND, (0, 0))
 
-    pygame.draw.rect(window, (255, 230, 179), basket.rect)
-
     pygame.draw.rect(window, (50, 50, 50), bar)
+
+    window.blit(Basket.basket_image, basket.rect)
 
     for fruit in fruits:
         if isinstance(fruit, Apple):
@@ -208,7 +210,7 @@ def main():
     add_heart = True
     health_add_incr = 10000
 
-    basket = Basket(WIDTH/2, HEIGHT-180, 100, 60)
+    basket = Basket(WIDTH/2, HEIGHT-175, 80, 60)
 
     health = 3
     score = 0
