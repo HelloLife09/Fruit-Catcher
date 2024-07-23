@@ -186,7 +186,7 @@ def draw(window, basket, fruits, hazards, heart, add_heart):
         elif isinstance(hazard, Bomb):
             window.blit(Bomb.bomb_image, hazard.rect)
 
-    if add_heart == True and heart != None:
+    if add_heart and heart is not None:
         window.blit(Heart.heart_image, heart.rect)
         add_heart = False
 
