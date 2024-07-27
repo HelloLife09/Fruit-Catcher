@@ -158,6 +158,21 @@ class Bomb(Hazard):
     def update(self):
         self.rect.y += self.hazard_vel
 
+class Fly(Hazard):
+    fly_image = pygame.transform.smoothscale(pygame.image.load('Images\\Hazards\\Fly.png').convert_alpha(), (Hazard.width- 10, Hazard.height))
+
+    def __init__(self):
+        super().__init__(random.randint(0, WIDTH - Hazard.width + 10))
+        self.rect = pygame.Rect(self.x, -30, Hazard.width - 10, Hazard.height)
+        self.hazard_vel = (random.randint(72, 98) / 10)
+        self.x_vel = random.choice([vel for vel in range(-10, 10) if abs(vel) > 4])
+
+    def update(self):
+        self.rect.y += self.hazard_vel
+        self.rect.x += self.x_vel
+        if self.rect.x < 0 or self.rect.x > WIDTH - self.rect.width:
+            self.x_vel *= -1
+
 def draw(window, basket, fruits, hazards, heart, add_heart):
     bar = pygame.Rect(0, 480, WIDTH, 10)
     window.blit(BACKGROUND, (0, 0))
@@ -185,6 +200,8 @@ def draw(window, basket, fruits, hazards, heart, add_heart):
             window.blit(Stone.stone_image, hazard.rect)
         elif isinstance(hazard, Bomb):
             window.blit(Bomb.bomb_image, hazard.rect)
+        elif isinstance(hazard, Fly):
+            window.blit(Fly.fly_image, hazard.rect)
 
     if add_heart and heart is not None:
         window.blit(Heart.heart_image, heart.rect)
@@ -200,10 +217,10 @@ def main():
     fruit_count = 0
     fruit_add_incr = 2000
 
-    hazard_classes = [Stone, Bomb]
+    hazard_classes = [Stone, Bomb, Fly]
     hazards = []
     hazard_count = 0
-    hazard_add_incr = 5000
+    hazard_add_incr = 4000
 
     health_count = 0
     heart_list = []
@@ -259,12 +276,11 @@ def main():
 
 
         if hazard_count > hazard_add_incr:
-            for _ in range(random.randint(0, 1)):
-                if random.random() <= 0.65:
-                    hazard = Stone()
-                else:
-                    hazard = Bomb()
-                hazards.append(hazard)
+            if random.random() <= 0.65:
+                hazard = random.choice([hazard for hazard in hazard_classes if hazard != Bomb])()
+            else:
+                hazard = Bomb()
+            hazards.append(hazard)
             hazard_add_incr = max(600, hazard_add_incr - 5)
             hazard_count = 0
 
