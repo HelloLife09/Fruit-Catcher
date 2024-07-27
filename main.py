@@ -159,7 +159,8 @@ class Bomb(Hazard):
         self.rect.y += self.hazard_vel
 
 class Fly(Hazard):
-    fly_image = pygame.transform.smoothscale(pygame.image.load('Images\\Hazards\\Fly.png').convert_alpha(), (Hazard.width- 10, Hazard.height))
+    fly_image_right = pygame.transform.smoothscale(pygame.image.load('Images\\Hazards\\Fly.png').convert_alpha(), (Hazard.width- 10, Hazard.height))
+    fly_image_left = pygame.transform.flip(fly_image_right, True, False)
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Hazard.width + 10))
@@ -172,6 +173,12 @@ class Fly(Hazard):
         self.rect.x += self.x_vel
         if self.rect.x < 0 or self.rect.x > WIDTH - self.rect.width:
             self.x_vel *= -1
+
+    def fly_image(self):
+        if self.x_vel > 0:
+            return self.fly_image_right
+        else:
+            return self.fly_image_left
 
 def draw(window, basket, fruits, hazards, heart, add_heart):
     bar = pygame.Rect(0, 480, WIDTH, 10)
@@ -201,7 +208,7 @@ def draw(window, basket, fruits, hazards, heart, add_heart):
         elif isinstance(hazard, Bomb):
             window.blit(Bomb.bomb_image, hazard.rect)
         elif isinstance(hazard, Fly):
-            window.blit(Fly.fly_image, hazard.rect)
+            window.blit(hazard.fly_image(), hazard.rect)
 
     if add_heart and heart is not None:
         window.blit(Heart.heart_image, heart.rect)
