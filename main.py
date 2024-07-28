@@ -165,8 +165,8 @@ class Fly(Hazard):
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Hazard.width + 10))
         self.rect = pygame.Rect(self.x, -30, Hazard.width - 10, Hazard.height)
-        self.hazard_vel = (random.randint(72, 98) / 10)
-        self.x_vel = random.choice([vel for vel in range(-10, 10) if abs(vel) > 4])
+        self.hazard_vel = (random.randint(42, 68) / 10)
+        self.x_vel = random.choice([vel for vel in [round(random.uniform(-10, 10), 1) for _ in range(1000)] if abs(vel) > 4])
 
     def update(self):
         self.rect.y += self.hazard_vel
