@@ -50,6 +50,9 @@ class Basket():
         else:
             self.x_vel = 0
 
+    def check_collision(self, other_rect):
+        return self.rect.colliderect(other_rect)
+
 
 class Fruit:
     width = 40
@@ -354,8 +357,7 @@ def main():
             fruit.update()
             if fruit.rect.y > HEIGHT:
                 fruits.remove(fruit)
-            elif fruit.rect.bottom >= basket.rect.top and fruit.rect.colliderect(
-                    basket.rect):
+            elif basket.check_collision(fruit.rect):
                 fruits.remove(fruit)
                 score += 1
                 break
@@ -364,8 +366,7 @@ def main():
             heart.update()
             if heart.rect.y > HEIGHT:
                 heart_list.remove(heart)
-            elif heart.rect.bottom >= basket.rect.top and heart.rect.colliderect(
-                    basket.rect):
+            elif basket.check_collision(heart.rect):
                 heart_list.remove(heart)
                 health += 1
                 break
@@ -374,8 +375,7 @@ def main():
             hazard.update()
             if hazard.rect.y > HEIGHT:
                 hazards.remove(hazard)
-            elif hazard.rect.bottom >= basket.rect.top and hazard.rect.colliderect(
-                    basket.rect):
+            elif basket.check_collision(hazard.rect):
                 hazards.remove(hazard)
                 if isinstance(hazard, Stone):
                     score -= 1
