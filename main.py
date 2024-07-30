@@ -11,9 +11,7 @@ pygame.init()
 pygame.display.set_caption("Fruit Catcher")
 
 WIDTH, HEIGHT = 450, 600
-BACKGROUND = pygame.transform.scale(
-    pygame.image.load(os.path.abspath('Images/Background.png')),
-    (WIDTH, HEIGHT))
+BACKGROUND = pygame.transform.scale(pygame.image.load(os.path.abspath('Images/Background.png')),(WIDTH, HEIGHT))
 FPS = 60
 
 BASKET_VEL = 5
@@ -22,9 +20,7 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 
 class Basket():
-    basket_image = pygame.transform.scale(
-        pygame.image.load(
-            os.path.abspath('Images/Basket.png')).convert_alpha(), (80, 60))
+    basket_image = pygame.transform.scale(pygame.image.load(os.path.abspath('Images/Basket.png')).convert_alpha(), (80, 60))
 
     def __init__(self, x, y, width, height):
         self.rect = pygame.Rect(x, y, width, height)
@@ -53,14 +49,12 @@ class Basket():
     def check_collision(self, other_rect):
         return self.rect.colliderect(other_rect)
 
-
 class Fruit:
     width = 40
     height = 40
 
     def __init__(self, x):
         self.x = x
-
 
 class Hazard:
     width = 40
@@ -69,13 +63,10 @@ class Hazard:
     def __init__(self, x):
         self.x = x
 
-
 class Heart:
     width = 60
     height = 60
-    heart_image = pygame.transform.scale(
-        pygame.image.load(os.path.abspath("Images/Heart.png")).convert_alpha(),
-        (width, height))
+    heart_image = pygame.transform.scale(pygame.image.load(os.path.abspath("Images/Heart.png")).convert_alpha(), (width, height))
 
     def __init__(self):
         self.x = random.randint(0, WIDTH - 20)
@@ -85,12 +76,8 @@ class Heart:
     def update(self):
         self.rect.y += self.heart_vel
 
-
 class Apple(Fruit):
-    apple_image = pygame.transform.scale(
-        pygame.image.load(
-            os.path.abspath("Images/Fruits/Apple.png")).convert_alpha(),
-        (Fruit.width, Fruit.height))
+    apple_image = pygame.transform.scale(pygame.image.load(os.path.abspath("Images/Fruits/Apple.png")).convert_alpha(), (Fruit.width, Fruit.height))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width))
@@ -100,12 +87,8 @@ class Apple(Fruit):
     def update(self):
         self.rect.y += self.fruit_vel
 
-
 class Orange(Fruit):
-    orange_image = pygame.transform.scale(
-        pygame.image.load(
-            os.path.abspath("Images/Fruits/Orange.png")).convert_alpha(),
-        (Fruit.width, Fruit.height))
+    orange_image = pygame.transform.scale(pygame.image.load(os.path.abspath("Images/Fruits/Orange.png")).convert_alpha(), (Fruit.width, Fruit.height))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width))
@@ -115,28 +98,19 @@ class Orange(Fruit):
     def update(self):
         self.rect.y += self.fruit_vel
 
-
 class Banana(Fruit):
-    banana_image = pygame.transform.scale(
-        pygame.image.load(
-            os.path.abspath("Images/Fruits/Banana.png")).convert_alpha(),
-        (Fruit.width + 10, Fruit.height + 10))
+    banana_image = pygame.transform.scale(pygame.image.load(os.path.abspath("Images/Fruits/Banana.png")).convert_alpha(), (Fruit.width + 10, Fruit.height + 10))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width - 10))
-        self.rect = pygame.Rect(self.x, -30, Fruit.width + 10,
-                                Fruit.height + 10)
+        self.rect = pygame.Rect(self.x, -30, Fruit.width + 10, Fruit.height + 10)
         self.fruit_vel = 4.5
 
     def update(self):
         self.rect.y += self.fruit_vel
 
-
 class Pear(Fruit):
-    pear_image = pygame.transform.scale(
-        pygame.image.load(
-            os.path.abspath("Images/Fruits/Pear.png")).convert_alpha(),
-        (Fruit.width, Fruit.height))
+    pear_image = pygame.transform.scale(pygame.image.load(os.path.abspath("Images/Fruits/Pear.png")).convert_alpha(), (Fruit.width, Fruit.height))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width))
@@ -146,28 +120,19 @@ class Pear(Fruit):
     def update(self):
         self.rect.y += self.fruit_vel
 
-
 class Blueberry(Fruit):
-    blueberry_image = pygame.transform.scale(
-        pygame.image.load(
-            os.path.abspath("Images/Fruits/Blueberry.png")).convert_alpha(),
-        (Fruit.width - 10, Fruit.height - 10))
+    blueberry_image = pygame.transform.scale(pygame.image.load(os.path.abspath("Images/Fruits/Blueberry.png")).convert_alpha(), (Fruit.width - 10, Fruit.height - 10))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width + 10))
-        self.rect = pygame.Rect(self.x, -30, Fruit.width - 10,
-                                Fruit.height - 10)
+        self.rect = pygame.Rect(self.x, -30, Fruit.width - 10, Fruit.height - 10)
         self.fruit_vel = 4.8
 
     def update(self):
         self.rect.y += self.fruit_vel
 
-
 class Grape(Fruit):
-    grape_image = pygame.transform.scale(
-        pygame.image.load(
-            os.path.abspath("Images/Fruits/Grape.png")).convert_alpha(),
-        (Fruit.width, Fruit.height + 10))
+    grape_image = pygame.transform.scale(pygame.image.load(os.path.abspath("Images/Fruits/Grape.png")).convert_alpha(), (Fruit.width, Fruit.height + 10))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Fruit.width))
@@ -177,28 +142,19 @@ class Grape(Fruit):
     def update(self):
         self.rect.y += self.fruit_vel
 
-
 class Stone(Hazard):
-    stone_image = pygame.transform.scale(
-        pygame.image.load(
-            os.path.abspath('Images/Hazards/Rock.png')).convert_alpha(),
-        (Hazard.width - 5, Hazard.height - 5))
+    stone_image = pygame.transform.scale(pygame.image.load(os.path.abspath('Images/Hazards/Rock.png')).convert_alpha(), (Hazard.width - 5, Hazard.height - 5))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Hazard.width + 5))
-        self.rect = pygame.Rect(self.x, -30, Hazard.width - 5,
-                                Hazard.height - 5)
+        self.rect = pygame.Rect(self.x, -30, Hazard.width - 5, Hazard.height - 5)
         self.hazard_vel = (random.randint(54, 78) / 10)
 
     def update(self):
         self.rect.y += self.hazard_vel
 
-
 class Bomb(Hazard):
-    bomb_image = pygame.transform.scale(
-        pygame.image.load(
-            os.path.abspath('Images/Hazards/Bomb.png')).convert_alpha(),
-        (Hazard.width, Hazard.height))
+    bomb_image = pygame.transform.scale(pygame.image.load(os.path.abspath('Images/Hazards/Bomb.png')).convert_alpha(), (Hazard.width, Hazard.height))
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Hazard.width))
@@ -208,23 +164,15 @@ class Bomb(Hazard):
     def update(self):
         self.rect.y += self.hazard_vel
 
-
 class Fly(Hazard):
-    fly_image_right = pygame.transform.smoothscale(
-        pygame.image.load(
-            os.path.abspath('Images/Hazards/Fly.png')).convert_alpha(),
-        (Hazard.width - 10, Hazard.height))
+    fly_image_right = pygame.transform.smoothscale(pygame.image.load(os.path.abspath('Images/Hazards/Fly.png')).convert_alpha(), (Hazard.width - 10, Hazard.height))
     fly_image_left = pygame.transform.flip(fly_image_right, True, False)
 
     def __init__(self):
         super().__init__(random.randint(0, WIDTH - Hazard.width + 10))
         self.rect = pygame.Rect(self.x, -30, Hazard.width - 10, Hazard.height)
         self.hazard_vel = (random.randint(42, 68) / 10)
-        self.x_vel = random.choice([
-            vel for vel in
-            [round(random.uniform(-10, 10), 1) for _ in range(1000)]
-            if abs(vel) > 4
-        ])
+        self.x_vel = random.choice([vel for vel in[round(random.uniform(-10, 10), 1) for _ in range(1000)]if abs(vel) > 4])
 
     def update(self):
         self.rect.y += self.hazard_vel
@@ -315,11 +263,9 @@ def main():
 
         keys = pygame.key.get_pressed()
 
-        if (keys[pygame.K_LEFT] or keys[pygame.K_a]
-            ) and not (keys[pygame.K_RIGHT] or keys[pygame.K_d]):
+        if (keys[pygame.K_LEFT] or keys[pygame.K_a]) and not (keys[pygame.K_RIGHT] or keys[pygame.K_d]):
             basket.move_left()
-        elif (keys[pygame.K_RIGHT] or keys[pygame.K_d]
-              ) and not (keys[pygame.K_LEFT] or keys[pygame.K_a]):
+        elif (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and not (keys[pygame.K_LEFT] or keys[pygame.K_a]):
             basket.move_right()
         else:
             basket.x_vel = 0
@@ -345,8 +291,7 @@ def main():
 
         if hazard_count > hazard_add_incr:
             if random.random() <= 0.65:
-                hazard = random.choice(
-                    [hazard for hazard in hazard_classes if hazard != Bomb])()
+                hazard = random.choice([hazard for hazard in hazard_classes if hazard != Bomb])()
             else:
                 hazard = Bomb()
             hazards.append(hazard)
@@ -388,8 +333,7 @@ def main():
                 break
 
         basket.update()
-        draw(window, basket, fruits, hazards,
-             heart_list[0] if heart_list else None, add_heart)
+        draw(window, basket, fruits, hazards, heart_list[0] if heart_list else None, add_heart)
 
     pygame.quit()
     sys.exit()
