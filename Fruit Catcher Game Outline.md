@@ -4,16 +4,16 @@
 
 ### **Objective:**
 
-- Catch as many falling fruits as possible while avoiding non-fruit objects.
+- Catch as many falling fruits as possible while avoiding hazards objects.
 
 ### **Gameplay Mechanics:**
 
 - Use the arrow keys to move the basket left and right.
-- Fruits and non-fruit objects fall from the top of the screen.
+- Fruits and hazards objects fall from the top of the screen.
 - Earn points for each fruit caught.
-- Lose points or hearts for each non-fruit object caught.
+- Lose points or hearts for each hazard object caught.
 - Gain heart for each Heart caught.
-- Game ends when a certain number of non-fruit objects are caught or a set number of fruits are missed.
+- Game ends when Health becomes 0.
 
 ## **2. Key Components:**
 
@@ -25,7 +25,7 @@
 
 - Fruit sprites
 - Heart sprites 
-- Non-fruit sprites
+- Hazard sprites
 
 ### **Environment:**
 
@@ -40,14 +40,14 @@
 ### **Basic Features:**
 
 - Smooth movement of the basket using arrow keys.
-- Random generation of falling objects (fruits and non-fruits).
+- Random generation of falling objects (fruits and hazards).
 - Collision detection to determine when the basket catches an object.
 - Score tracking and display.
 - Game over conditions (Don't know what yet)
 
 ### **Advanced Features (Optional):**
 
-- **Sound Effects and Music:** Add sound effects for catching fruits, hearts, and non-fruits, and background music for a more engaging experience.
+- **Sound Effects and Music:** Add sound effects for catching fruits, hearts, and hazards, and background music for a more engaging experience.
 - **Animations:** Simple animations for falling objects and basket movement.
 
 ## **4. Development Steps:**
@@ -63,7 +63,7 @@
 
 3. **Generate Falling Objects:**
 
-   - Randomly generate fruits, hearts, and non-fruit objects.
+   - Randomly generate fruits, hearts, and hazards objects.
    - Implement their falling motion.
 
 4. **Collision Detection:**
